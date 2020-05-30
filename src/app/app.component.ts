@@ -17,6 +17,9 @@ import {WizardService} from "./wizard.service";
 export class AppComponent
 {
 
+  /**
+   * List of sections (steps) in the wizard
+   */
   sections: ISection[] = [
     {
       _id:   Sections.PROJECT,
@@ -99,6 +102,11 @@ export class AppComponent
     return this._activeSection === Sections.REVIEW;
   }
 
+  /**
+   * Determinate if section is filled by user or not
+   * @param {number} i
+   * @return {boolean}
+   */
   isFilled(i: number)
   {
     return this._activeSection >= i;
@@ -125,11 +133,19 @@ export class AppComponent
     return this.sections[INDEX].label;
   }
 
+  /**
+   * Remove a record by given ID
+   * @param {string} itemID
+   */
   removeWizard(itemID: string)
   {
     this._wizardService.removeByID(itemID).subscribe(wizards => this._wizardService.wizards = wizards);
   }
 
+  /**
+   * Prepare wizard for edit given record
+   * @param {IWizard} wizard
+   */
   startEditing(wizard:IWizard)
   {
     this._store.dispatch(startEditingAction(wizard));
