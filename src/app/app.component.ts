@@ -1,9 +1,12 @@
 import {Component} from '@angular/core';
 import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {Store} from "@ngrx/store";
+import {startEditingAction} from "./ngrx/app.actions";
 import {IState} from "./ngrx/app.reducers";
 import {ISection} from "./section";
 import {Sections} from "./sections.enum";
+import {IWizard} from "./wizard";
+import {WizardService} from "./wizard.service";
 
 @UntilDestroy()
 @Component({
@@ -39,7 +42,14 @@ export class AppComponent
 
   protected _activeSection: Sections = Sections.PROJECT;
 
-  constructor(protected _store:Store<IState>)
+  get wizards(): IWizard[]
+  {
+    return this._wizardService.wizards;
+  }
+
+
+  constructor(protected _store: Store<IState>,
+              protected _wizardService: WizardService)
   {
 
   }
@@ -49,6 +59,8 @@ export class AppComponent
     this._store.pipe(
       untilDestroyed(this)
     ).subscribe(state => this._activeSection = state.step);
+
+    this._wizardService.getAll().subscribe(wizards => this._wizardService.wizards = wizards);
   }
 
   /**
@@ -87,7 +99,7 @@ export class AppComponent
     return this._activeSection === Sections.REVIEW;
   }
 
-  isFilled(i:number)
+  isFilled(i: number)
   {
     return this._activeSection >= i;
   }
@@ -111,5 +123,15 @@ export class AppComponent
     }
 
     return this.sections[INDEX].label;
+  }
+
+  removeWizard(itemID: string)
+  {
+    this._wizardService.removeByID(itemID).subscribe(wizards => this._wizardService.wizards = wizards);
+  }
+
+  startEditing(wizard:IWizard)
+  {
+    this._store.dispatch(startEditingAction(wizard));
   }
 }

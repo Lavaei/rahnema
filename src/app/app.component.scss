@@ -1,7 +1,5 @@
-$width: 800px;
-
 .wizard {
-  width: $width;
+  width: 800px;
   background: #FFFFFF;
   margin: 0 auto;
   box-shadow: 7px 7px 7px #CCC;
@@ -118,4 +116,32 @@ $width: 800px;
   }
 }
 
+
+.table{
+  padding: 50px;
+
+  ::ng-deep{
+    .operations{
+      cursor: pointer;
+      display: flex;
+      justify-content: space-evenly;
+
+      .operation-remove{
+        color: #AA0000;
+
+        &:hover{
+          color: #FF0000;
+        }
+      }
+
+      .operation-edit{
+        color: #00AA00;
+
+        &:hover{
+          color: #00FF00;
+        }
+      }
+    }
+  }
+}
 

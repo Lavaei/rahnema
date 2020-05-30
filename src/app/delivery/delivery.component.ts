@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {take} from "rxjs/operators";
 import {previousAction, saveWizardAction} from "../ngrx/app.actions";
 import {IState} from "../ngrx/app.reducers";
 
+@UntilDestroy()
 @Component({
   selector:    'app-delivery',
   templateUrl: './delivery.component.html',
@@ -41,7 +43,7 @@ export class DeliveryComponent implements OnInit
 
 
     this._store.pipe(
-      take(1)
+      untilDestroyed(this)
     ).subscribe(
       state => this.deliveryForm.setValue(state.wizard.delivery)
     );

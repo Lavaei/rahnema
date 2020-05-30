@@ -1,6 +1,6 @@
 import {Action, createReducer, on} from "@ngrx/store";
 import {Sections} from "../sections.enum";
-import {nextAction, previousAction, resetAction, saveWizardAction, submitAction} from "./app.actions";
+import {nextAction, previousAction, resetAction, saveWizardAction, startEditingAction, submitAction} from "./app.actions";
 import {IWizard} from "../wizard";
 
 const INITIAL_WIZARD_STATE: IWizard = {
@@ -36,6 +36,7 @@ export function wizardReducer(state: IWizard | undefined, action: Action)
   return createReducer(
     INITIAL_WIZARD_STATE,
     on(saveWizardAction, (state, props) => ({...state, ...props})),
+    on(startEditingAction, (state, props) => ({...INITIAL_WIZARD_STATE, ...props})),
     on(resetAction, () => INITIAL_WIZARD_STATE),
   )(state, action);
 }

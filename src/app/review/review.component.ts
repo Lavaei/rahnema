@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {Store} from "@ngrx/store";
 import {take} from "rxjs/operators";
 import {previousAction, saveWizardAction, submitAction} from "../ngrx/app.actions";
 import {IState} from "../ngrx/app.reducers";
 import {IWizard} from "../wizard";
 
+@UntilDestroy()
 @Component({
   selector:    'app-review',
   templateUrl: './review.component.html',
@@ -23,7 +24,7 @@ export class ReviewComponent implements OnInit
   ngOnInit(): void
   {
     this._store.pipe(
-      take(1)
+      untilDestroyed(this)
     ).subscribe(
       state => this.wizard = state.wizard
     );
@@ -36,6 +37,6 @@ export class ReviewComponent implements OnInit
 
   submit()
   {
-    this._store.dispatch(submitAction());
+    this._store.dispatch(submitAction(this.wizard));
   }
 }

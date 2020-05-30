@@ -1,5 +1,6 @@
 export interface IWizard
 {
+  _id?: string;
   project: Partial<IProject>;
   settings: Partial<ISettings>;
   delivery: Partial<IDelivery>;

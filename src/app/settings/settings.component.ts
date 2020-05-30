@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {UntilDestroy, untilDestroyed} from '@ngneat/until-destroy';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {take} from "rxjs/operators";
@@ -6,6 +7,7 @@ import {Communications} from "../communications.enum";
 import {previousAction, saveWizardAction} from "../ngrx/app.actions";
 import {IState} from "../ngrx/app.reducers";
 
+@UntilDestroy()
 @Component({
   selector:    'app-settings',
   templateUrl: './settings.component.html',
@@ -52,7 +54,7 @@ export class SettingsComponent implements OnInit
     );
 
     this._store.pipe(
-      take(1)
+      untilDestroyed(this)
     ).subscribe(
       state => this.settingsForm.setValue(state.wizard.settings)
     );
