@@ -3,7 +3,12 @@
     <label>Email Address</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "email">
+      <div class="input-container">
+        <div class="input-icon input-icon-left">
+          <img src="assets/at.svg">
+        </div>
+        <input type = "text" formControlName = "email">
+      </div>
 
       <div *ngIf = "email.dirty && email.hasError('required')" class = "error">
         The email address is required
@@ -41,8 +46,8 @@
 
     <div class = "form-input">
       <select formControlName = "timeZone">
-        <option>(GMT -11:00) International Date Line West</option>
-        <option>(GMT +3:30) Tehran</option>
+        <option value="-11:00">(GMT -11:00) International Date Line West</option>
+        <option value="+3:30">(GMT +3:30) Tehran</option>
       </select>
 
       <div *ngIf = "timeZone.dirty && timeZone.hasError('required')" class = "error">
@@ -56,15 +61,13 @@
     <label>Communication</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "communication">
+      <app-checkboxes [items]="communicationItems" formControlName = "communication"></app-checkboxes>
 
-      <div *ngIf = "communication.dirty && communication.hasError('required')" class = "error">
-        The contact phone is required
+      <div *ngIf = "communication.dirty && communication.value.length == 0" class = "error">
+        Please select at least one of the communication ways
       </div>
 
-      <div class = "hint">
-        This input is under construction!
-      </div>
+
     </div>
   </div>
 

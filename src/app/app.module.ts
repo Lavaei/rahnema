@@ -1,6 +1,7 @@
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatButtonModule} from "@angular/material/button";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatInputModule} from "@angular/material/input";
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -16,6 +17,7 @@ import {ReviewComponent} from './review/review.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {EffectsModule} from '@ngrx/effects';
+import { CheckboxesComponent } from './checkboxes/checkboxes.component';
 
 @NgModule({
   imports:      [
@@ -26,6 +28,7 @@ import {EffectsModule} from '@ngrx/effects';
     ReactiveFormsModule,
     HttpClientModule,
     MatButtonModule,
+    MatCheckboxModule,
     MatInputModule,
     StoreModule.forRoot({wizard: wizardReducer, step: stepReducer}),
     EffectsModule.forRoot([AppEffects]),
@@ -36,6 +39,7 @@ import {EffectsModule} from '@ngrx/effects';
     SettingsComponent,
     DeliveryComponent,
     ReviewComponent,
+    CheckboxesComponent,
   ],
   providers:    [],
   bootstrap:    [AppComponent]

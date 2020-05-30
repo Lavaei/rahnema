@@ -17,9 +17,13 @@ export class ProjectComponent implements OnInit
   projectName: FormControl  = new FormControl("", [Validators.required]);
   projectOwner: FormControl = new FormControl("", [Validators.required]);
   customerName: FormControl = new FormControl("", [Validators.required]);
-  contactPhone: FormControl = new FormControl("", [Validators.required]);
+  contactPhone: FormControl = new FormControl("", [Validators.required, Validators.pattern(/^[0-9\-\(\)\+]+$/)]);
   email: FormControl        = new FormControl("", [Validators.required, Validators.email]);
-  companySite: FormControl  = new FormControl("", [Validators.required]);
+
+  /**
+   * TODO The validation is  too simple, i should improve it!
+   */
+  companySite: FormControl  = new FormControl("", [Validators.required, Validators.pattern(/^[a-z0-9\.\-]+$/i)]);
 
   constructor(protected _formBuilder: FormBuilder,
               protected _store: Store<IState>)

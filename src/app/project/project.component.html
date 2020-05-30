@@ -3,7 +3,7 @@
     <label>Project Name</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "projectName">
+      <input type = "text" placeholder="Loop CRM" formControlName = "projectName" >
 
       <div *ngIf = "projectName.dirty && projectName.hasError('required')" class = "error">
         The project name is required
@@ -15,7 +15,7 @@
     <label>Project Owner</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "projectOwner">
+      <input type = "text" placeholder="Krox" formControlName = "projectOwner">
 
       <div *ngIf = "projectOwner.dirty && projectOwner.hasError('required')" class = "error">
         The project owner is required
@@ -27,7 +27,7 @@
     <label>Customer Name</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "customerName">
+      <input type = "text" placeholder="Loop Inc." formControlName = "customerName">
 
       <div *ngIf = "customerName.dirty && customerName.hasError('required')" class = "error">
         The customer name is required
@@ -43,10 +43,20 @@
     <label>Contact Phone</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "contactPhone">
+      <div class="input-container">
+        <div class="input-icon input-icon-left">
+          <img src="assets/phone.svg">
+        </div>
+        <input type = "text" placeholder="+45678967456" formControlName = "contactPhone">
+      </div>
 
       <div *ngIf = "contactPhone.dirty && contactPhone.hasError('required')" class = "error">
         The contact phone is required
+      </div>
+
+      <div *ngIf = "contactPhone.dirty && !contactPhone.hasError('required') && contactPhone.hasError('pattern')"
+           class = "error">
+        The contact phone is not valid
       </div>
 
       <div class = "hint">
@@ -59,7 +69,12 @@
     <label>Email Address</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "email">
+      <div class="input-container">
+        <div class="input-icon input-icon-left">
+          <img src="assets/at.svg">
+        </div>
+        <input type = "text" placeholder="anna.krox@loop.com" formControlName = "email">
+      </div>
 
       <div *ngIf = "email.dirty && email.hasError('required')" class = "error">
         The email address is required
@@ -77,10 +92,19 @@
     <label>Company Site</label>
 
     <div class = "form-input">
-      <input type = "text" formControlName = "companySite">
+
+      <div class="input-container">
+        <input type = "text" placeholder="loop" formControlName = "companySite">
+        <div class="input-icon input-icon-right">.com</div>
+      </div>
 
       <div *ngIf = "companySite.dirty && companySite.hasError('required')" class = "error">
         The company site is required
+      </div>
+
+      <div *ngIf = "companySite.dirty && !companySite.hasError('required') && companySite.hasError('pattern')"
+           class = "error">
+        The contact site is not valid
       </div>
 
     </div>

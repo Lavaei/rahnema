@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {take} from "rxjs/operators";
+import {Communications} from "../communications.enum";
 import {previousAction, saveWizardAction} from "../ngrx/app.actions";
 import {IState} from "../ngrx/app.reducers";
 
@@ -12,6 +13,21 @@ import {IState} from "../ngrx/app.reducers";
 })
 export class SettingsComponent implements OnInit
 {
+
+  readonly communicationItems: {_id:string, label:string}[] = [
+    {
+      _id: Communications.EMAIL,
+      label: "Email",
+    },
+    {
+      _id: Communications.SMS,
+      label: "SMS",
+    },
+    {
+      _id: Communications.PHONE,
+      label: "Phone",
+    },
+  ];
 
   settingsForm: FormGroup;
   email: FormControl         = new FormControl("", [Validators.required, Validators.email]);

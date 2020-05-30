@@ -16,7 +16,7 @@ const INITIAL_WIZARD_STATE: IWizard = {
   settings: {
     email:         '',
     language:      'English',
-    timeZone:      "Tehran",
+    timeZone:      "+3:30",
     communication: []
   },
 
