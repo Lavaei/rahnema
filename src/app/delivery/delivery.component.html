@@ -1,0 +1,86 @@
+<form [formGroup] = "deliveryForm" (ngSubmit) = "next()">
+  <div class = "form-input-container">
+    <label>Address Line 1</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "address1">
+
+      <div *ngIf = "address1.dirty && address1.hasError('required')" class = "error">
+        The address line 1 is required
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Address Line 2</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "address2">
+
+      <div *ngIf = "address2.dirty && address2.hasError('required')" class = "error">
+        The address line 2 is required
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Post Code</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "postCode">
+
+      <div *ngIf = "postCode.dirty && postCode.hasError('required')" class = "error">
+        The post code is required
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>City</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "city">
+
+      <div *ngIf = "city.dirty && city.hasError('required')" class = "error">
+        The city is required
+      </div>
+
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>State</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "state">
+
+      <div *ngIf = "state.dirty && state.hasError('required')" class = "error">
+        The state is required
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class = "form-input-container">
+    <label>Country</label>
+
+    <div class = "form-input">
+      <select formControlName = "country">
+        <option>United Kingdom</option>
+        <option>Iran</option>
+      </select>
+
+      <div *ngIf = "country.dirty && country.hasError('required')" class = "error">
+        The country is required
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+<div class = "wizard-footer">
+  <button mat-flat-button class="left" (click)="previous()">Previous</button>
+  <button mat-flat-button color="primary" class="right" (click)="next()">Next Step</button>
+</div>

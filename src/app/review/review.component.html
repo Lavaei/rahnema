@@ -1,0 +1,28 @@
+<div class="sections-container">
+  <div class="section">
+    <div class="section-title">Project Details</div>
+    <div>{{ wizard.project.projectName }}</div>
+    <div>Phone: {{ wizard.project.contactPhone }}</div>
+    <div>Email: {{ wizard.project.email }}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Delivery Address</div>
+    <div>{{ wizard.delivery.address1 }}</div>
+    <div>{{ wizard.delivery.address2 }}</div>
+    <div>{{ wizard.delivery.city }}, {{ wizard.delivery.state }}, {{ wizard.delivery.country }}</div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Payment Details</div>
+    <div>Card Number: xxxx-xxxx-xxxx-1234</div>
+    <div>Card Name: John Wick</div>
+    <div>Card Expiry: 01/21</div>
+  </div>
+
+</div>
+
+<div class = "wizard-footer">
+  <button mat-flat-button class="left" (click)="previous()">Previous</button>
+  <button mat-flat-button color="primary" class="right" (click)="submit()">Submit</button>
+</div>

@@ -1,0 +1,76 @@
+<form [formGroup] = "settingsForm" (ngSubmit) = "next()">
+  <div class = "form-input-container">
+    <label>Email Address</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "email">
+
+      <div *ngIf = "email.dirty && email.hasError('required')" class = "error">
+        The email address is required
+      </div>
+
+      <div *ngIf = "email.dirty && !email.hasError('required') && email.hasError('email')" class = "error">
+        The email address is not valid
+      </div>
+
+      <div class = "hint">
+        Email will not be publicly displayed
+        <a href = "#">Learn More</a>.
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Language</label>
+
+    <div class = "form-input">
+      <select formControlName = "language">
+        <option>English</option>
+        <option>Persian</option>
+      </select>
+
+      <div *ngIf = "language.dirty && language.hasError('required')" class = "error">
+        The language is required
+      </div>
+
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Time Zone</label>
+
+    <div class = "form-input">
+      <select formControlName = "timeZone">
+        <option>(GMT -11:00) International Date Line West</option>
+        <option>(GMT +3:30) Tehran</option>
+      </select>
+
+      <div *ngIf = "timeZone.dirty && timeZone.hasError('required')" class = "error">
+        The time zone is required
+      </div>
+
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Communication</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "communication">
+
+      <div *ngIf = "communication.dirty && communication.hasError('required')" class = "error">
+        The contact phone is required
+      </div>
+
+      <div class = "hint">
+        This input is under construction!
+      </div>
+    </div>
+  </div>
+
+</form>
+
+<div class = "wizard-footer">
+  <button mat-flat-button class = "left" (click) = "previous()">Previous</button>
+  <button mat-flat-button color = "primary" class = "right" (click) = "next()">Next Step</button>
+</div>

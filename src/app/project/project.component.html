@@ -1,0 +1,93 @@
+<form [formGroup] = "projectForm" (ngSubmit) = "next()">
+  <div class = "form-input-container">
+    <label>Project Name</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "projectName">
+
+      <div *ngIf = "projectName.dirty && projectName.hasError('required')" class = "error">
+        The project name is required
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Project Owner</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "projectOwner">
+
+      <div *ngIf = "projectOwner.dirty && projectOwner.hasError('required')" class = "error">
+        The project owner is required
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Customer Name</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "customerName">
+
+      <div *ngIf = "customerName.dirty && customerName.hasError('required')" class = "error">
+        The customer name is required
+      </div>
+
+      <div class = "hint">
+        If you want your invoices addressed to a company, leave blank to use your full name.
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Contact Phone</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "contactPhone">
+
+      <div *ngIf = "contactPhone.dirty && contactPhone.hasError('required')" class = "error">
+        The contact phone is required
+      </div>
+
+      <div class = "hint">
+        If you want your invoices addressed to a company, leave blank to use your full name.
+      </div>
+    </div>
+  </div>
+
+  <div class = "form-input-container">
+    <label>Email Address</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "email">
+
+      <div *ngIf = "email.dirty && email.hasError('required')" class = "error">
+        The email address is required
+      </div>
+
+      <div *ngIf = "email.dirty && !email.hasError('required') && email.hasError('email')"
+           class = "error">
+        The email address is not valid
+      </div>
+    </div>
+  </div>
+
+
+  <div class = "form-input-container">
+    <label>Company Site</label>
+
+    <div class = "form-input">
+      <input type = "text" formControlName = "companySite">
+
+      <div *ngIf = "companySite.dirty && companySite.hasError('required')" class = "error">
+        The company site is required
+      </div>
+
+    </div>
+  </div>
+
+</form>
+
+<div class = "wizard-footer">
+  <button mat-flat-button color = "primary" class = "right" (click) = "next()">Next Step</button>
+</div>
